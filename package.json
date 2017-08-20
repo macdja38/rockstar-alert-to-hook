@@ -1,0 +1,16 @@
+{
+  "name": "gta-alert-to-hook",
+  "version": "1.0.0",
+  "description": "Converts Rockstar newswire posts to discord webhooks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Macdja38",
+  "license": "UNLICENCED",
+  "dependencies": {
+    "eris": "^0.7.0",
+    "node-fetch": "^1.7.2",
+    "to-markdown": "^3.1.0"
+  }
+}
