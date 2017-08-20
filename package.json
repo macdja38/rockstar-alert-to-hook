@@ -1,5 +1,5 @@
 {
-  "name": "gta-alert-to-hook",
+  "name": "rockstar-alert-to-hook",
   "version": "1.0.0",
   "description": "Converts Rockstar newswire posts to discord webhooks",
   "main": "index.js",
