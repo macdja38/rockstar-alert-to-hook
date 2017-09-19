@@ -74,7 +74,6 @@ function checkCurrentPostId(data) {
 }
 
 async function checkTask() {
-  console.log("Fetching data");
   let data = await fetchNewsWire();
   let currentID = await checkCurrentPostId(data);
   if (currentID < data.posts[0].id) {
@@ -92,6 +91,7 @@ async function checkTask() {
           if (postTags.includes(tag)) return true;
         }
       }).map(postToEmbed);
+      console.log(embeds);
       if (embeds.length > 0) {
         eris.executeWebhook(webhook.id, webhook.token, {embeds}).catch(console.error);
       }

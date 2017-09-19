@@ -9,7 +9,7 @@
   "author": "Macdja38",
   "license": "UNLICENCED",
   "dependencies": {
-    "eris": "^0.7.0",
+    "eris": "^0.7.1",
     "node-fetch": "^1.7.2",
     "to-markdown": "^3.1.0"
   }
