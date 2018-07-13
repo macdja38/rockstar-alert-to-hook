@@ -4,13 +4,17 @@
   "description": "Converts Rockstar newswire posts to discord webhooks",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "Macdja38",
   "license": "UNLICENCED",
   "dependencies": {
     "eris": "^0.7.1",
     "node-fetch": "^1.7.2",
-    "to-markdown": "^3.1.0"
+    "to-markdown": "^3.1.0",
+    "turndown": "^4.0.2"
+  },
+  "devDependencies": {
+    "jest": "^23.4.0"
   }
 }

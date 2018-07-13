@@ -5,7 +5,7 @@ const util = require("util");
 
 const fs = require("fs");
 
-const toMarkdown = require("to-markdown");
+const toMarkdown = require("./toMarkdown");
 
 const writeFile = util.promisify(fs.writeFile);
 const access = util.promisify(fs.access);
@@ -101,7 +101,7 @@ async function checkTask() {
 
 function postToEmbed(post) {
   const embed = {
-    title: post.title,
+    title: toMarkdown(post.title),
     url: post.link,
     description: toMarkdown(post.blurb_short),
   };
