@@ -1,5 +1,5 @@
 const Eris = require("eris");
-const eris = new Eris("", {restMode: true});
+const eris = new Eris("", { restMode: true });
 
 const util = require("util");
 
@@ -35,7 +35,7 @@ function fetchNewsWire() {
  * @param {number} id
  */
 function writeCurrentPostId(id) {
-  return writeFile(currentPostIDPath, JSON.stringify({currentPostID: id}));
+  return writeFile(currentPostIDPath, JSON.stringify({ currentPostID: id }));
 }
 
 /**
@@ -81,10 +81,14 @@ async function checkTask() {
     writeCurrentPostId(currentPostID);
     // we got new posts, do something with them
     const newPosts = data.posts.filter(post => post.id > currentID);
+    console.log("new Posts", newPosts);
 
     webhooks.forEach(webhook => {
-      console.log("new Posts", newPosts)
       const embeds = newPosts.filter(post => {
+        // if no tags list is specified pass everything through
+        if (!Array.isArray(webhook.tags)) return true;
+
+        // tags list is specified, filter out items that don't have at least one tag in the list
         let postTags = post["primary_tags"].map(tag => tag.name.toLowerCase());
         for (let tag of webhook.tags) {
           console.log(tag, postTags);
@@ -93,7 +97,7 @@ async function checkTask() {
       }).map(postToEmbed);
       console.log(embeds);
       if (embeds.length > 0) {
-        eris.executeWebhook(webhook.id, webhook.token, {embeds}).catch(console.error);
+        eris.executeWebhook(webhook.id, webhook.token, { embeds }).catch(console.error);
       }
     });
   }
@@ -109,7 +113,7 @@ function postToEmbed(post) {
     const previewImages = post["preview_images_parsed"];
     const possiblePostImage = previewImages.featured || previewImages.large || previewImages.small;
     if (possiblePostImage) {
-      embed.image = {url: possiblePostImage.src};
+      embed.image = { url: possiblePostImage.src };
     }
   }
   return embed;
