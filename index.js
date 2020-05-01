@@ -19,8 +19,19 @@ const webhooks = config.webhooks;
 
 let currentPostID = false;
 
+function getTags() {
+  return fetch('https://www.rockstargames.com/newswire/get-tags.json?page=0')
+    .then(function (res) {
+      if (res.status === 200) {
+        return res.json();
+      } else {
+        throw new Error(res.statusText)
+      }
+    });
+}
+
 function fetchNewsWire() {
-  return fetch('https://www.rockstargames.com/newswire/tags.json?page=0')
+  return fetch('https://www.rockstargames.com/newswire/get-posts.json?page=0')
     .then(function (res) {
       if (res.status === 200) {
         return res.json();
@@ -61,7 +72,11 @@ function checkCurrentPostId(data) {
       })
     }).catch(error => {
       console.log(error);
-      if (data) return data.posts[0].id;
+      if (data) {
+        const postID = data.posts[0].id;
+        writeCurrentPostId(postID);
+        return postID
+      }
       return fetchCurrentPostID().then((postID) => {
         writeCurrentPostId(postID);
         currentPostID = postID;
