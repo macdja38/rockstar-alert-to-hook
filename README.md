@@ -9,3 +9,5 @@
 get running id with `pm2 list`
 restart project with `pm2 restart <id>`
 stop with `pm2 stop <id>`
+
+Alternatively to running this yourself you can follow the #news channel on discord.gg/gta
